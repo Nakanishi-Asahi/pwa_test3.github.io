@@ -1,0 +1,15 @@
+{
+  "short_name": "MyAPP",
+  "name": "私のアプリ",
+  "icons": [
+    {
+      "src": "icon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#00C721F"
+}
