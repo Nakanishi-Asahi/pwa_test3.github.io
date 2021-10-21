@@ -14,8 +14,8 @@
   <div class="col-sm-6">
     <h1 class="text-center">Hello Worldですよね</h1>
     <button id="confirm">通知許可の確認</button>
-    <button id="send">通知を送信</button>
-    <button id="wait">ちょっと待ってから送信</button>
+    <button id="send">すぐに通知を送信</button>
+    <button id="wait">3秒待ってから送信</button>
     <script>
     window.addEventListener('load', () => {
       if ('serviceWorker' in navigator) {
@@ -48,7 +48,7 @@
       const permission = Notification.permission;
       if (permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
-          registration.active.postMessage('hello!!!');
+          registration.active.postMessage('よぉ!!!');
         });
       } else {
         alert('通知の許可がもらえませんよ');
@@ -63,7 +63,7 @@
       if (permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
           setTimeout(function(){
-            registration.active.postMessage('wait and hello!!!');
+            registration.active.postMessage('ちょっと待ったぜ!!!');
           }, 3000);
         });
       } else {
