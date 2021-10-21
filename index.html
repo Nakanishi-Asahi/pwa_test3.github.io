@@ -12,7 +12,7 @@
 <body>
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1 class="text-center">Hello Worldっぽいですね</h1>
+    <h1 class="text-center">Hello Worldですね</h1>
     <button id="confirm">通知許可の確認</button>
     <button id="send">通知を送信</button>
     <button id="wait">ちょっと待ってから送信</button>
@@ -49,6 +49,22 @@
         navigator.serviceWorker.ready.then(registration => {
           registration.active.postMessage('hello!!!');
         });
+      } else {
+        alert('通知の許可がもらえませんよ');
+      }
+    }
+    function onClickWait() {
+      if (!('Notification' in window)) {
+        alert('このブラウザはプッシュ通知に対応してません。。。');
+        return;
+      }
+      const permission = Notification.permission;
+      if (permission === 'granted') {
+        window.setTimeout(function(){
+          navigator.serviceWorker.ready.then(registration => {
+            registration.active.postMessage('wait hello!!!');
+          });
+        }, 5000);
       } else {
         alert('通知の許可がもらえませんよ');
       }
