@@ -12,7 +12,7 @@
 <body>
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1 class="text-center">Hello Worldですね</h1>
+    <h1 class="text-center">Hello Worldですyoね</h1>
     <button id="confirm">通知許可の確認</button>
     <button id="send">通知を送信</button>
     <button id="wait">ちょっと待ってから送信</button>
@@ -60,7 +60,7 @@
       }
       const permission = Notification.permission;
       if (permission === 'granted') {
-        window.setTimeout(function(){
+        setTimeout(function(){
           navigator.serviceWorker.ready.then(registration => {
             registration.active.postMessage('wait hello!!!');
           });
