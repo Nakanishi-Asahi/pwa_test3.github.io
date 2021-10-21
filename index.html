@@ -22,20 +22,21 @@
       });
     });
   </script>
-  <button id="send" type = "button" onclick="sendPushNotification()">通知を送信する</button>
+  <button id="send" type = "button" onclick="randomNotification()">通知を送信する</button>
   <script type="text/javascript">
-  function sendPushNotification() {
-    Push.create('こんにちは！', {
-      body: '更新をお知らせします！',
-      icon: 'index.jpg',
-      timeout: 5000,
-      onClick: function () {
-        this.close();
-        location.href = 'https://www.yahoo.co.jp';
-      }
-    });
+  function randomNotification() {
+    var randomItem = Math.floor(Math.random()*games.length);
+    var notifTitle = games[randomItem].name;
+    var notifBody = 'Created by '+games[randomItem].author+'.';
+    var notifImg = 'data/img/'+games[randomItem].slug+'.jpg';
+    var options = {
+        body: notifBody,
+        icon: notifImg
+    }
+    var notif = new Notification(notifTitle, options);
+    setTimeout(randomNotification, 30000);
   }
-</script>
+  </script>
 </div>
 <div class="col-sm-3"></div>
 </body>
