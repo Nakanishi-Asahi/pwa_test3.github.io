@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
 <head>
   <meta charset="utf-8" />
   <title>Hello World Test</title>
@@ -22,27 +22,18 @@
       });
     });
   </script>
-  <button id="send">通知を送信する</button>
-  <script>
-  console.log("send!!");
-  // ServiceWorkerの登録
-  window.addEventListener('load', () => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('sw.js')
-        .then(registration => console.log('registered', registration))
-        .catch(error => console.log('error', error));
-    }
-  });
-
-  // 通知の送信
-  document.getElementById('send').addEventListener('click', () => {
-    if (Notification.permission === 'granted') {
-      navigator.serviceWorker.ready.then(registration => {
-        registration.active.postMessage('hello!!!');
-      });
-    }
-  });
+  <button id="send" type = "button" onclick="sendPushNotification()">通知を送信する</button>
+  function sendPushNotification() {
+    Push.create('こんにちは！', {
+      body: '更新をお知らせします！',
+      icon: 'index.jpg',
+      timeout: 5000,
+      onClick: function () {
+        this.close();
+        location.href = 'https://www.yahoo.co.jp';
+      }
+    });
+  }
 </script>
 </div>
 <div class="col-sm-3"></div>
