@@ -12,7 +12,7 @@
 <body>
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1 class="text-center">Hello Worldですよね</h1>
+    <h1 class="text-center">Hello Worldですよねぇ</h1>
     <button id="confirm">通知許可の確認</button>
     <button id="send">通知を送信</button>
     <button id="wait">ちょっと待ってから送信</button>
@@ -47,7 +47,10 @@
       const permission = Notification.permission;
       if (permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
-          registration.active.postMessage('hello!!!');
+          setTimeout(function(){
+            registration.active.postMessage('hello1!!!');
+          }, 3000)
+          registration.active.postMessage('hello2!!!');
         });
       } else {
         alert('通知の許可がもらえませんよ');
@@ -62,7 +65,7 @@
       if (permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
           setTimeout(function(){
-            registration.active.postMessage('hello!!!');
+            registration.active.postMessage('wait!!!');
           }, 3000);
         });
       } else {
