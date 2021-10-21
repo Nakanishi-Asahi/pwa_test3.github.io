@@ -60,7 +60,11 @@
       }
       const permission = Notification.permission;
       if (permission === 'granted') {
-        sleep(5000);
+        setTimeout(function(){
+          console.log("5秒後に実行するよ!!");
+          navigator.serviceWorker.ready.then(registration => {
+            registration.active.postMessage('wait and hello!!!');
+        }, 5000);
         navigator.serviceWorker.ready.then(registration => {
           registration.active.postMessage('hello!!!');
         });
