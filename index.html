@@ -15,7 +15,6 @@
     <h1 class="text-center">Hello Worldっぽいですね</h1>
     <button id="confirm">通知許可の確認</button>
     <button id="send">通知を送信</button>
-    <button id="wait_and_send">5秒後に通知を送信</button>
     <script>
     window.addEventListener('load', () => {
       if ('serviceWorker' in navigator) {
@@ -46,25 +45,6 @@
       }
       const permission = Notification.permission;
       if (permission === 'granted') {
-        navigator.serviceWorker.ready.then(registration => {
-          registration.active.postMessage('hello!!!');
-        });
-      } else {
-        alert('通知の許可がもらえませんよ');
-      }
-    }
-    function onClickWait_And_Send() {
-      if (!('Notification' in window)) {
-        alert('このブラウザはプッシュ通知に対応してません。。。');
-        return;
-      }
-      const permission = Notification.permission;
-      if (permission === 'granted') {
-        setTimeout(function(){
-          console.log("5秒後に実行するよ!!");
-          navigator.serviceWorker.ready.then(registration => {
-            registration.active.postMessage('wait and hello!!!');
-        }, 5000);
         navigator.serviceWorker.ready.then(registration => {
           registration.active.postMessage('hello!!!');
         });
